@@ -178,9 +178,11 @@ var licenseWriter = {
     return formatted;
   },
   compile: function() {
+    var format = this.licenseTemplate ? this.licenseTemplate : this.format;
+
     return this.modules
       .reduce(function(prev, curr) {
-        return prev + '\n\n' + this.licenseTemplate ? this.licenseTemplate(curr) : this.format(curr);
+        return prev + '\n\n' + format(curr);
       }.bind(this), '')
       .replace('\n\n', '');
   },
