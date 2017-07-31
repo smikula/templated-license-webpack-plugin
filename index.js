@@ -60,6 +60,7 @@ var moduleReader = {
     return {
       name: mod,
       url: packagejson.repository && packagejson.repository.url,
+      author: packagejson.author,
       version: packagejson.version,
       license: license,
       licenseText: this.getLicenseText(mod, license)
