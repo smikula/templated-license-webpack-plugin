@@ -124,7 +124,7 @@ var licenseReader = {
     var file =
       (this.licenseOverrides[mod] && isThere(this.licenseOverrides[mod])) ?
       this.licenseOverrides[mod] : this.findLicenseFile(mod);
-    
+
     if(file) {
       licenseText = fs.readFileSync(file).toString('utf8');
     }
@@ -179,7 +179,7 @@ var licenseWriter = {
   compile: function() {
     return this.modules
       .reduce(function(prev, curr) {
-        return prev + '\n\n' + this.format(curr);
+        return prev + '\n\n' + this.licenseTemplate ? this.licenseTemplate(curr) : this.format(curr);
       }.bind(this), '')
       .replace('\n\n', '');
   },
@@ -261,6 +261,7 @@ var instance = function() {
     addLicenseText: true,
     includeUndefined: false,
     suppressErrors: false,
+    licenseTemplate: null,
     licenseTemplateDir: __dirname,
     licenseTemplateCache: {},
     licenseTypeOverrides: {},

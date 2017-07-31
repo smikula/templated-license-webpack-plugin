@@ -1,6 +1,6 @@
 {
-  "name": "license-webpack-plugin",
-  "version": "0.5.1",
+  "name": "templated-license-webpack-plugin",
+  "version": "0.0.1",
   "description": "Outputs licenses from 3rd party libraries to a file",
   "main": "index.js",
   "files": [
@@ -18,12 +18,9 @@
     "plugin",
     "webpack"
   ],
-  "author": "S K (xz64)",
+  "author": "Ken Chau",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xz64/license-webpack-plugin/issues"
-  },
-  "homepage": "https://github.com/xz64/license-webpack-plugin#readme",
+  "homepage": "https://github.com/kenotron/templated-license-webpack-plugin#readme",
   "devDependencies": {
     "mock-fs": "^3.9.0",
     "path.join": "^1.0.0",

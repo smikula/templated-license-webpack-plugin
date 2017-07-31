@@ -1,20 +1,20 @@
-# License Webpack Plugin
+# Templated License Webpack Plugin
 
-[![Build Status](https://api.travis-ci.org/xz64/license-webpack-plugin.svg?branch=master)](https://travis-ci.org/xz64/timestamp-microservice)
+[![Build Status](https://api.travis-ci.org/kenotron/templated-license-webpack-plugin.svg?branch=master)](https://travis-ci.org/kenotron/templated-license-webpack-plugin)
 
 This webpack plugin finds all 3rd party libraries used in a webpack build whose
 licenses match a given regex, and outputs the licenses for each package in your
 webpack build directory.
 
 ## Installation
-`npm install license-webpack-plugin --save-dev`
+`npm install templated-license-webpack-plugin --save-dev`
 
 ## Usage
 
 First, import the plugin into your webpack configuration:
 
 ```javascript
-var LicenseWebpackPlugin = require('license-webpack-plugin');
+var TemplatedLicenseWebpackPlugin = require('templated-license-webpack-plugin');
 ```
 The plugin requires you to specify a regular expression for licenses to match
 under the pattern property.
@@ -27,15 +27,18 @@ This example will also throw an error and terminate your build if it finds a
 license containing GPL in it.
 
 ```javascript
-new LicenseWebpackPlugin({
+new TemplatedLicenseWebpackPlugin({
   pattern: /^(MIT|ISC|BSD.*)$/,
   unacceptablePattern: /GPL/,
-  abortOnUnacceptableLicense: true
+  abortOnUnacceptableLicense: true,
+  licenseTemplate: (mod) => `${mod.name} v${mod.version} (${mod.url})\n\n${mod.licenseText}`
 });
 ```
 
 Below are all options that can be passed to the plugin:
 
+* `licenseTemplate` A function that takes in module information and returns the license string to
+  be inserted into the file
 * `pattern` A regular expression of license names to match. The license is read
   from the `license` property in `package.json` for each module used in your
   webpack output.
