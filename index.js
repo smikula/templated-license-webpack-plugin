@@ -214,14 +214,14 @@ var plugin = {
       + 'located underneath the same directory as your project?'
   },
   apply: function(compiler) {
-    compiler.plugin('done', function(stats) {
+    const onDone = function (stats) {
       this.outputPath = compiler.outputPath;
       var buildRoot = compiler.context;
       var lastPathSepIndex;
-
       if (buildRoot.indexOf(MODULE_DIR) > -1) {
         buildRoot = buildRoot.substring(0, buildRoot.indexOf(MODULE_DIR) - 1);
-      } else {
+      }
+      else {
         while (!isThere(path.join(buildRoot, MODULE_DIR))) {
           lastPathSepIndex = buildRoot.lastIndexOf(path.sep);
           if (lastPathSepIndex <= 0) {
@@ -230,18 +230,23 @@ var plugin = {
           buildRoot = buildRoot.substring(0, buildRoot.lastIndexOf(path.sep));
         }
       }
-
       this.buildRoot = buildRoot;
-
       this.gatherModuleInfo(stats.compilation.modules);
       this.write();
-
-      this.errors.forEach(function(error) {
+      this.errors.forEach(function (error) {
         if (!this.suppressErrors) {
           console.error('license-webpack-plugin: ' + error);
         }
       }, this);
-    }.bind(this));
+    }.bind(this);
+
+    if ('hooks' in compiler) {
+      // webpack 4
+      compiler.hooks.done.tap('TemplatedLicenseWebpackPlugin', onDone);
+    } else {
+      // webpack 2/3
+      compiler.plugin('done', onDone);
+    }
   }
 };
 
