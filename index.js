@@ -108,12 +108,10 @@ var moduleReader = {
   },
   gatherModuleInfo: function(moduleStats) {
     var moduleMap = {};
-    moduleStats
-      .filter(this.isFromNodeModules.bind(this))
-      .forEach(function(mod) {
-        var moduleName = this.findPackageName(mod.resource);
-        moduleMap[moduleName] = {};
-      }.bind(this));
+    for (const mod of filterSet(moduleStats, this.isFromNodeModules.bind(this))) {
+      var moduleName = this.findPackageName(mod.resource);
+      moduleMap[moduleName] = {};
+    }
     this.moduleMap = moduleMap;
     this.writeModuleInfo();
   }
@@ -296,5 +294,13 @@ var licensePlugin = function(opts) {
   objectAssign(this, composedPlugin, instance(), opts);
   this.apply = this.apply.bind(this);
 };
+
+function* filterSet(set, predicate) {
+  for (const item of set) {
+    if (predicate(item)) {
+      yield item;
+    }
+  }
+}
 
 module.exports = licensePlugin;
