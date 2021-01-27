@@ -7,7 +7,10 @@
     "index.js"
   ],
   "scripts": {
-    "test": "tapes test/*.js | tap-diff"
+    "test": "tapes test/*.js | tap-diff",
+    "change": "beachball change",
+    "release": "beachball publish",
+    "checkchange": "beachball check"
   },
   "repository": {
     "type": "git",
@@ -29,7 +32,8 @@
     "sinon": "^1.17.4",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.0",
-    "tapes": "^4.1.0"
+    "tapes": "^4.1.0",
+    "beachball": "^1.50.0"
   },
   "dependencies": {
     "object-assign": "^4.1.0"
