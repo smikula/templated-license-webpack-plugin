@@ -1,6 +1,6 @@
 {
   "name": "templated-license-webpack-plugin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Outputs licenses from 3rd party libraries to a file",
   "main": "index.js",
   "files": [

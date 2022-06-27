@@ -1,0 +1,20 @@
+{
+  "name": "templated-license-webpack-plugin",
+  "entries": [
+    {
+      "date": "Mon, 27 Jun 2022 23:47:55 GMT",
+      "tag": "templated-license-webpack-plugin_v0.3.1",
+      "version": "0.3.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Properly handle packages in nested node_modules",
+            "author": "mikula@gmail.com",
+            "commit": "8f0f36f9faffd17fe10173fbc5a7a74160e4184b",
+            "package": "templated-license-webpack-plugin"
+          }
+        ]
+      }
+    }
+  ]
+}
