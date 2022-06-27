@@ -67,11 +67,9 @@ var moduleReader = {
     };
   },
   findPackageName: function(jsFilePath) {
-    var tokens = jsFilePath
-      .replace(path.join(this.buildRoot, MODULE_DIR) + path.sep, '')
-      .split(path.sep);
-
-    return (tokens[0].charAt(0) === '@') ? tokens.slice(0, 2).join('/') : tokens[0];
+    var tokens = jsFilePath.split(path.sep);
+    var idx = tokens.lastIndexOf(MODULE_DIR) + 1;
+    return (tokens[idx].charAt(0) === '@') ? tokens.slice(idx, idx + 2).join('/') : tokens[idx];
   },
   writeModuleInfo: function() {
     this.modules = Object.keys(this.moduleMap)
