@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Handle missing packages",
+  "packageName": "templated-license-webpack-plugin",
+  "email": "mikula@gmail.com",
+  "dependentChangeType": "patch"
+}
