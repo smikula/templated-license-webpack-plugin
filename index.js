@@ -23,6 +23,10 @@ var moduleReader = {
   },
   readPackageJson: function(mod) {
     var pathName = path.join(this.buildRoot, MODULE_DIR, mod, 'package.json');
+    if (!fs.existsSync(pathName)) {
+      return {};
+    }
+
     var file = fs.readFileSync(pathName);
     return JSON.parse(file);
   },
